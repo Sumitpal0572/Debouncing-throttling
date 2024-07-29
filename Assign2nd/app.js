@@ -25,4 +25,20 @@ async function fetchdata() {
     let res = await fetch(`${url}&s=${inputval}`)
     let data = await res.json()
     console.log(data);
+    displaydata(data.Search);
 }
+
+let container = document.getElementById("container");
+
+function displaydata(data) {
+    container.innerHTML = ""
+    data.forEach((ele) => {
+        let title = document.createElement("p")
+        title.textContent = ele.Title
+        title.setAttribute("data-imdbid", ele.imdbID);
+        title.addEventListener("click", () =>
+            fetchMovieDetails(ele.imdbID));
+        container.append(title);
+    })
+}
+
