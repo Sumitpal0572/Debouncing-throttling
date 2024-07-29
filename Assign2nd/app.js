@@ -1,5 +1,5 @@
 
-let url = ` http://www.omdbapi.com/?i=tt3896198&apikey=92212ae5`
+let url = `http://www.omdbapi.com/?i=tt3896198&apikey=ad9cf180`
 
 let search = document.getElementById("search")
 search.addEventListener("input", function () {
@@ -18,6 +18,11 @@ function debounce(func, delay) {
 }
 
 
-function fetchdata() {
+async function fetchdata() {
     console.log("hello");
+    let inputval = search.value
+
+    let res = await fetch(`${url}&s=${inputval}`)
+    let data = await res.json()
+    console.log(data);
 }
